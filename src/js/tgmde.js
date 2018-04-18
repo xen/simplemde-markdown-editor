@@ -22,21 +22,21 @@ var bindings = {
 	"toggleBold": toggleBold,
 	"toggleItalic": toggleItalic,
 	"drawLink": drawLink,
-	"toggleHeadingSmaller": toggleHeadingSmaller,
-	"toggleHeadingBigger": toggleHeadingBigger,
-	"drawImage": drawImage,
+	// "toggleHeadingSmaller": toggleHeadingSmaller,
+	// "toggleHeadingBigger": toggleHeadingBigger,
+	// "drawImage": drawImage,
 	"toggleBlockquote": toggleBlockquote,
-	"toggleOrderedList": toggleOrderedList,
-	"toggleUnorderedList": toggleUnorderedList,
+	// "toggleOrderedList": toggleOrderedList,
+	// "toggleUnorderedList": toggleUnorderedList,
 	"toggleCodeBlock": toggleCodeBlock,
 	"togglePreview": togglePreview,
-	"toggleStrikethrough": toggleStrikethrough,
-	"toggleHeading1": toggleHeading1,
-	"toggleHeading2": toggleHeading2,
-	"toggleHeading3": toggleHeading3,
+	// "toggleStrikethrough": toggleStrikethrough,
+	// "toggleHeading1": toggleHeading1,
+	// "toggleHeading2": toggleHeading2,
+	// "toggleHeading3": toggleHeading3,
 	"cleanBlock": cleanBlock,
-	"drawTable": drawTable,
-	"drawHorizontalRule": drawHorizontalRule,
+	// "drawTable": drawTable,
+	// "drawHorizontalRule": drawHorizontalRule,
 	"undo": undo,
 	"redo": redo,
 	"toggleSideBySide": toggleSideBySide,
@@ -47,13 +47,13 @@ var shortcuts = {
 	"toggleBold": "Cmd-B",
 	"toggleItalic": "Cmd-I",
 	"drawLink": "Cmd-K",
-	"toggleHeadingSmaller": "Cmd-H",
-	"toggleHeadingBigger": "Shift-Cmd-H",
+	// "toggleHeadingSmaller": "Cmd-H",
+	// "toggleHeadingBigger": "Shift-Cmd-H",
 	"cleanBlock": "Cmd-E",
-	"drawImage": "Cmd-Alt-I",
+	// "drawImage": "Cmd-Alt-I",
 	"toggleBlockquote": "Cmd-'",
-	"toggleOrderedList": "Cmd-Alt-L",
-	"toggleUnorderedList": "Cmd-L",
+	// "toggleOrderedList": "Cmd-Alt-L",
+	// "toggleUnorderedList": "Cmd-L",
 	"toggleCodeBlock": "Cmd-Alt-C",
 	"togglePreview": "Cmd-P",
 	"toggleSideBySide": "F9",
@@ -163,16 +163,16 @@ function getState(cm, pos) {
 			ret.italic = true;
 		} else if(data === "quote") {
 			ret.quote = true;
-		} else if(data === "strikethrough") {
-			ret.strikethrough = true;
+			// } else if(data === "strikethrough") {
+			// 	ret.strikethrough = true;
 		} else if(data === "comment") {
 			ret.code = true;
 		} else if(data === "link") {
 			ret.link = true;
 		} else if(data === "tag") {
 			ret.image = true;
-		} else if(data.match(/^header(\-[1-6])?$/)) {
-			ret[data.replace("header", "heading")] = true;
+			// } else if(data.match(/^header(\-[1-6])?$/)) {
+			// 	ret[data.replace("header", "heading")] = true;
 		}
 	}
 	return ret;
@@ -246,9 +246,9 @@ function toggleItalic(editor) {
 /**
  * Action for toggling strikethrough.
  */
-function toggleStrikethrough(editor) {
-	_toggleBlock(editor, "strikethrough", "~~");
-}
+// function toggleStrikethrough(editor) {
+// 	_toggleBlock(editor, "strikethrough", "~~");
+// }
 
 /**
  * Action for toggling code block.
@@ -335,7 +335,7 @@ function toggleCodeBlock(editor) {
 	var block_start, block_end, lineCount;
 
 	if(is_code === "single") {
-		// similar to some SimpleMDE _toggleBlock logic
+		// similar to some TgMDE _toggleBlock logic
 		var start = line.text.slice(0, cur_start.ch).replace("`", ""),
 			end = line.text.slice(cur_start.ch).replace("`", "");
 		cm.replaceRange(start + end, {
@@ -547,60 +547,60 @@ function toggleBlockquote(editor) {
 /**
  * Action for toggling heading size: normal -> h1 -> h2 -> h3 -> h4 -> h5 -> h6 -> normal
  */
-function toggleHeadingSmaller(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, "smaller");
-}
+// function toggleHeadingSmaller(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleHeading(cm, "smaller");
+// }
 
 /**
  * Action for toggling heading size: normal -> h6 -> h5 -> h4 -> h3 -> h2 -> h1 -> normal
  */
-function toggleHeadingBigger(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, "bigger");
-}
+// function toggleHeadingBigger(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleHeading(cm, "bigger");
+// }
 
 /**
  * Action for toggling heading size 1
  */
-function toggleHeading1(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 1);
-}
+// function toggleHeading1(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleHeading(cm, undefined, 1);
+// }
 
 /**
  * Action for toggling heading size 2
  */
-function toggleHeading2(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 2);
-}
+// function toggleHeading2(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleHeading(cm, undefined, 2);
+// }
 
 /**
  * Action for toggling heading size 3
  */
-function toggleHeading3(editor) {
-	var cm = editor.codemirror;
-	_toggleHeading(cm, undefined, 3);
-}
+// function toggleHeading3(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleHeading(cm, undefined, 3);
+// }
 
 
 /**
  * Action for toggling ul.
  */
-function toggleUnorderedList(editor) {
-	var cm = editor.codemirror;
-	_toggleLine(cm, "unordered-list");
-}
+// function toggleUnorderedList(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleLine(cm, "unordered-list");
+// }
 
 
 /**
  * Action for toggling ol.
  */
-function toggleOrderedList(editor) {
-	var cm = editor.codemirror;
-	_toggleLine(cm, "ordered-list");
-}
+// function toggleOrderedList(editor) {
+// 	var cm = editor.codemirror;
+// 	_toggleLine(cm, "ordered-list");
+// }
 
 /**
  * Action for clean block (remove headline, list, blockquote code, markers)
@@ -617,7 +617,8 @@ function drawLink(editor) {
 	var cm = editor.codemirror;
 	var stat = getState(cm);
 	var options = editor.options;
-	var url = "http://";
+	// var url = "http://";
+	var url = "https://";
 	if(options.promptURLs) {
 		url = prompt(options.promptTexts.link);
 		if(!url) {
@@ -630,39 +631,39 @@ function drawLink(editor) {
 /**
  * Action for drawing an img.
  */
-function drawImage(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	var url = "http://";
-	if(options.promptURLs) {
-		url = prompt(options.promptTexts.image);
-		if(!url) {
-			return false;
-		}
-	}
-	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
-}
+// function drawImage(editor) {
+// 	var cm = editor.codemirror;
+// 	var stat = getState(cm);
+// 	var options = editor.options;
+// 	var url = "http://";
+// 	if(options.promptURLs) {
+// 		url = prompt(options.promptTexts.image);
+// 		if(!url) {
+// 			return false;
+// 		}
+// 	}
+// 	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
+// }
 
 /**
  * Action for drawing a table.
  */
-function drawTable(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	_replaceSelection(cm, stat.table, options.insertTexts.table);
-}
+// function drawTable(editor) {
+// 	var cm = editor.codemirror;
+// 	var stat = getState(cm);
+// 	var options = editor.options;
+// 	_replaceSelection(cm, stat.table, options.insertTexts.table);
+// }
 
 /**
  * Action for drawing a horizontal rule.
  */
-function drawHorizontalRule(editor) {
-	var cm = editor.codemirror;
-	var stat = getState(cm);
-	var options = editor.options;
-	_replaceSelection(cm, stat.image, options.insertTexts.horizontalRule);
-}
+// function drawHorizontalRule(editor) {
+// 	var cm = editor.codemirror;
+// 	var stat = getState(cm);
+// 	var options = editor.options;
+// 	_replaceSelection(cm, stat.image, options.insertTexts.horizontalRule);
+// }
 
 
 /**
@@ -822,112 +823,112 @@ function _replaceSelection(cm, active, startEnd, url) {
 }
 
 
-function _toggleHeading(cm, direction, size) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
+// function _toggleHeading(cm, direction, size) {
+// 	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+// 		return;
 
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	for(var i = startPoint.line; i <= endPoint.line; i++) {
-		(function(i) {
-			var text = cm.getLine(i);
-			var currHeadingLevel = text.search(/[^#]/);
+// 	var startPoint = cm.getCursor("start");
+// 	var endPoint = cm.getCursor("end");
+// 	for(var i = startPoint.line; i <= endPoint.line; i++) {
+// 		(function(i) {
+// 			var text = cm.getLine(i);
+// 			var currHeadingLevel = text.search(/[^#]/);
 
-			if(direction !== undefined) {
-				if(currHeadingLevel <= 0) {
-					if(direction == "bigger") {
-						text = "###### " + text;
-					} else {
-						text = "# " + text;
-					}
-				} else if(currHeadingLevel == 6 && direction == "smaller") {
-					text = text.substr(7);
-				} else if(currHeadingLevel == 1 && direction == "bigger") {
-					text = text.substr(2);
-				} else {
-					if(direction == "bigger") {
-						text = text.substr(1);
-					} else {
-						text = "#" + text;
-					}
-				}
-			} else {
-				if(size == 1) {
-					if(currHeadingLevel <= 0) {
-						text = "# " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "# " + text.substr(currHeadingLevel + 1);
-					}
-				} else if(size == 2) {
-					if(currHeadingLevel <= 0) {
-						text = "## " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "## " + text.substr(currHeadingLevel + 1);
-					}
-				} else {
-					if(currHeadingLevel <= 0) {
-						text = "### " + text;
-					} else if(currHeadingLevel == size) {
-						text = text.substr(currHeadingLevel + 1);
-					} else {
-						text = "### " + text.substr(currHeadingLevel + 1);
-					}
-				}
-			}
+// 			if(direction !== undefined) {
+// 				if(currHeadingLevel <= 0) {
+// 					if(direction == "bigger") {
+// 						text = "###### " + text;
+// 					} else {
+// 						text = "# " + text;
+// 					}
+// 				} else if(currHeadingLevel == 6 && direction == "smaller") {
+// 					text = text.substr(7);
+// 				} else if(currHeadingLevel == 1 && direction == "bigger") {
+// 					text = text.substr(2);
+// 				} else {
+// 					if(direction == "bigger") {
+// 						text = text.substr(1);
+// 					} else {
+// 						text = "#" + text;
+// 					}
+// 				}
+// 			} else {
+// 				if(size == 1) {
+// 					if(currHeadingLevel <= 0) {
+// 						text = "# " + text;
+// 					} else if(currHeadingLevel == size) {
+// 						text = text.substr(currHeadingLevel + 1);
+// 					} else {
+// 						text = "# " + text.substr(currHeadingLevel + 1);
+// 					}
+// 				} else if(size == 2) {
+// 					if(currHeadingLevel <= 0) {
+// 						text = "## " + text;
+// 					} else if(currHeadingLevel == size) {
+// 						text = text.substr(currHeadingLevel + 1);
+// 					} else {
+// 						text = "## " + text.substr(currHeadingLevel + 1);
+// 					}
+// 				} else {
+// 					if(currHeadingLevel <= 0) {
+// 						text = "### " + text;
+// 					} else if(currHeadingLevel == size) {
+// 						text = text.substr(currHeadingLevel + 1);
+// 					} else {
+// 						text = "### " + text.substr(currHeadingLevel + 1);
+// 					}
+// 				}
+// 			}
 
-			cm.replaceRange(text, {
-				line: i,
-				ch: 0
-			}, {
-				line: i,
-				ch: 99999999999999
-			});
-		})(i);
-	}
-	cm.focus();
-}
+// 			cm.replaceRange(text, {
+// 				line: i,
+// 				ch: 0
+// 			}, {
+// 				line: i,
+// 				ch: 99999999999999
+// 			});
+// 		})(i);
+// 	}
+// 	cm.focus();
+// }
 
 
-function _toggleLine(cm, name) {
-	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
-		return;
+// function _toggleLine(cm, name) {
+// 	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
+// 		return;
 
-	var stat = getState(cm);
-	var startPoint = cm.getCursor("start");
-	var endPoint = cm.getCursor("end");
-	var repl = {
-		"quote": /^(\s*)\>\s+/,
-		"unordered-list": /^(\s*)(\*|\-|\+)\s+/,
-		"ordered-list": /^(\s*)\d+\.\s+/
-	};
-	var map = {
-		"quote": "> ",
-		"unordered-list": "* ",
-		"ordered-list": "1. "
-	};
-	for(var i = startPoint.line; i <= endPoint.line; i++) {
-		(function(i) {
-			var text = cm.getLine(i);
-			if(stat[name]) {
-				text = text.replace(repl[name], "$1");
-			} else {
-				text = map[name] + text;
-			}
-			cm.replaceRange(text, {
-				line: i,
-				ch: 0
-			}, {
-				line: i,
-				ch: 99999999999999
-			});
-		})(i);
-	}
-	cm.focus();
-}
+// 	var stat = getState(cm);
+// 	var startPoint = cm.getCursor("start");
+// 	var endPoint = cm.getCursor("end");
+// 	var repl = {
+// 		"quote": /^(\s*)\>\s+/,
+// 		"unordered-list": /^(\s*)(\*|\-|\+)\s+/,
+// 		"ordered-list": /^(\s*)\d+\.\s+/
+// 	};
+// 	var map = {
+// 		"quote": "> ",
+// 		"unordered-list": "* ",
+// 		"ordered-list": "1. "
+// 	};
+// 	for(var i = startPoint.line; i <= endPoint.line; i++) {
+// 		(function(i) {
+// 			var text = cm.getLine(i);
+// 			if(stat[name]) {
+// 				text = text.replace(repl[name], "$1");
+// 			} else {
+// 				text = map[name] + text;
+// 			}
+// 			cm.replaceRange(text, {
+// 				line: i,
+// 				ch: 0
+// 			}, {
+// 				line: i,
+// 				ch: 99999999999999
+// 			});
+// 		})(i);
+// 	}
+// 	cm.focus();
+// }
 
 function _toggleBlock(editor, type, start_chars, end_chars) {
 	if(/editor-preview-active/.test(editor.codemirror.getWrapperElement().lastChild.className))
@@ -949,14 +950,14 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
 		start = text.slice(0, startPoint.ch);
 		end = text.slice(startPoint.ch);
 		if(type == "bold") {
-			start = start.replace(/(\*\*|__)(?![\s\S]*(\*\*|__))/, "");
-			end = end.replace(/(\*\*|__)/, "");
+			start = start.replace(/(\*)(?![\s\S]*(\*))/, "");
+			end = end.replace(/(\*)/, "");
 		} else if(type == "italic") {
-			start = start.replace(/(\*|_)(?![\s\S]*(\*|_))/, "");
-			end = end.replace(/(\*|_)/, "");
-		} else if(type == "strikethrough") {
-			start = start.replace(/(\*\*|~~)(?![\s\S]*(\*\*|~~))/, "");
-			end = end.replace(/(\*\*|~~)/, "");
+			start = start.replace(/(_)(?![\s\S]*(_))/, "");
+			end = end.replace(/(_)/, "");
+			// } else if (type == "strikethrough") {
+			// 	start = start.replace(/(\*\*|~~)(?![\s\S]*(\*\*|~~))/, "");
+			// 	end = end.replace(/(\*\*|~~)/, "");
 		}
 		cm.replaceRange(start + end, {
 			line: startPoint.line,
@@ -966,7 +967,7 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
 			ch: 99999999999999
 		});
 
-		if(type == "bold" || type == "strikethrough") {
+		if(type == "bold") {
 			startPoint.ch -= 2;
 			if(startPoint !== endPoint) {
 				endPoint.ch -= 2;
@@ -980,13 +981,9 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
 	} else {
 		text = cm.getSelection();
 		if(type == "bold") {
-			text = text.split("**").join("");
-			text = text.split("__").join("");
-		} else if(type == "italic") {
 			text = text.split("*").join("");
+		} else if(type == "italic") {
 			text = text.split("_").join("");
-		} else if(type == "strikethrough") {
-			text = text.split("~~").join("");
 		}
 		cm.replaceSelection(start + text + end);
 
@@ -996,7 +993,7 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
 
 	cm.setSelection(startPoint, endPoint);
 	cm.focus();
-}
+};
 
 function _cleanBlock(cm) {
 	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
@@ -1018,7 +1015,7 @@ function _cleanBlock(cm) {
 			ch: 99999999999999
 		});
 	}
-}
+};
 
 // Merge the properties of one object into another.
 function _mergeProperties(target, source) {
@@ -1039,7 +1036,7 @@ function _mergeProperties(target, source) {
 	}
 
 	return target;
-}
+};
 
 // Merge an arbitrary number of objects into one.
 function extend(target) {
@@ -1048,7 +1045,7 @@ function extend(target) {
 	}
 
 	return target;
-}
+};
 
 /* The right word count in respect for CJK. */
 function wordCount(data) {
@@ -1064,7 +1061,7 @@ function wordCount(data) {
 		}
 	}
 	return count;
-}
+};
 
 var toolbarBuiltInButtons = {
 	"bold": {
@@ -1081,49 +1078,49 @@ var toolbarBuiltInButtons = {
 		title: "Italic",
 		default: true
 	},
-	"strikethrough": {
-		name: "strikethrough",
-		action: toggleStrikethrough,
-		className: "fa fa-strikethrough",
-		title: "Strikethrough"
-	},
-	"heading": {
-		name: "heading",
-		action: toggleHeadingSmaller,
-		className: "fa fa-header",
-		title: "Heading",
-		default: true
-	},
-	"heading-smaller": {
-		name: "heading-smaller",
-		action: toggleHeadingSmaller,
-		className: "fa fa-header fa-header-x fa-header-smaller",
-		title: "Smaller Heading"
-	},
-	"heading-bigger": {
-		name: "heading-bigger",
-		action: toggleHeadingBigger,
-		className: "fa fa-header fa-header-x fa-header-bigger",
-		title: "Bigger Heading"
-	},
-	"heading-1": {
-		name: "heading-1",
-		action: toggleHeading1,
-		className: "fa fa-header fa-header-x fa-header-1",
-		title: "Big Heading"
-	},
-	"heading-2": {
-		name: "heading-2",
-		action: toggleHeading2,
-		className: "fa fa-header fa-header-x fa-header-2",
-		title: "Medium Heading"
-	},
-	"heading-3": {
-		name: "heading-3",
-		action: toggleHeading3,
-		className: "fa fa-header fa-header-x fa-header-3",
-		title: "Small Heading"
-	},
+	// "strikethrough": {
+	// 	name: "strikethrough",
+	// 	action: toggleStrikethrough,
+	// 	className: "fa fa-strikethrough",
+	// 	title: "Strikethrough"
+	// },
+	// "heading": {
+	// 	name: "heading",
+	// 	action: toggleHeadingSmaller,
+	// 	className: "fa fa-header",
+	// 	title: "Heading",
+	// 	default: true
+	// },
+	// "heading-smaller": {
+	// 	name: "heading-smaller",
+	// 	action: toggleHeadingSmaller,
+	// 	className: "fa fa-header fa-header-x fa-header-smaller",
+	// 	title: "Smaller Heading"
+	// },
+	// "heading-bigger": {
+	// 	name: "heading-bigger",
+	// 	action: toggleHeadingBigger,
+	// 	className: "fa fa-header fa-header-x fa-header-bigger",
+	// 	title: "Bigger Heading"
+	// },
+	// "heading-1": {
+	// 	name: "heading-1",
+	// 	action: toggleHeading1,
+	// 	className: "fa fa-header fa-header-x fa-header-1",
+	// 	title: "Big Heading"
+	// },
+	// "heading-2": {
+	// 	name: "heading-2",
+	// 	action: toggleHeading2,
+	// 	className: "fa fa-header fa-header-x fa-header-2",
+	// 	title: "Medium Heading"
+	// },
+	// "heading-3": {
+	// 	name: "heading-3",
+	// 	action: toggleHeading3,
+	// 	className: "fa fa-header fa-header-x fa-header-3",
+	// 	title: "Small Heading"
+	// },
 	"separator-1": {
 		name: "separator-1"
 	},
@@ -1140,29 +1137,29 @@ var toolbarBuiltInButtons = {
 		title: "Quote",
 		default: true
 	},
-	"unordered-list": {
-		name: "unordered-list",
-		action: toggleUnorderedList,
-		className: "fa fa-list-ul",
-		title: "Generic List",
-		default: true
-	},
-	"ordered-list": {
-		name: "ordered-list",
-		action: toggleOrderedList,
-		className: "fa fa-list-ol",
-		title: "Numbered List",
-		default: true
-	},
+	// "unordered-list": {
+	// 	name: "unordered-list",
+	// 	action: toggleUnorderedList,
+	// 	className: "fa fa-list-ul",
+	// 	title: "Generic List",
+	// 	default: true
+	// },
+	// "ordered-list": {
+	// 	name: "ordered-list",
+	// 	action: toggleOrderedList,
+	// 	className: "fa fa-list-ol",
+	// 	title: "Numbered List",
+	// 	default: true
+	// },
 	"clean-block": {
 		name: "clean-block",
 		action: cleanBlock,
 		className: "fa fa-eraser fa-clean-block",
 		title: "Clean block"
 	},
-	"separator-2": {
-		name: "separator-2"
-	},
+	// "separator-2": {
+	// 	name: "separator-2"
+	// },
 	"link": {
 		name: "link",
 		action: drawLink,
@@ -1170,25 +1167,25 @@ var toolbarBuiltInButtons = {
 		title: "Create Link",
 		default: true
 	},
-	"image": {
-		name: "image",
-		action: drawImage,
-		className: "fa fa-picture-o",
-		title: "Insert Image",
-		default: true
-	},
-	"table": {
-		name: "table",
-		action: drawTable,
-		className: "fa fa-table",
-		title: "Insert Table"
-	},
-	"horizontal-rule": {
-		name: "horizontal-rule",
-		action: drawHorizontalRule,
-		className: "fa fa-minus",
-		title: "Insert Horizontal Line"
-	},
+	// "image": {
+	// 	name: "image",
+	// 	action: drawImage,
+	// 	className: "fa fa-picture-o",
+	// 	title: "Insert Image",
+	// 	default: true
+	// },
+	// "table": {
+	// 	name: "table",
+	// 	action: drawTable,
+	// 	className: "fa fa-table",
+	// 	title: "Insert Table"
+	// },
+	// "horizontal-rule": {
+	// 	name: "horizontal-rule",
+	// 	action: drawHorizontalRule,
+	// 	className: "fa fa-minus",
+	// 	title: "Insert Horizontal Line"
+	// },
 	"separator-3": {
 		name: "separator-3"
 	},
@@ -1218,7 +1215,7 @@ var toolbarBuiltInButtons = {
 	},
 	"guide": {
 		name: "guide",
-		action: "https://simplemde.com/markdown-guide",
+		action: "https://core.telegram.org/bots/api#markdown-style",
 		className: "fa fa-question-circle",
 		title: "Markdown Guide",
 		default: true
@@ -1242,26 +1239,26 @@ var toolbarBuiltInButtons = {
 
 var insertTexts = {
 	link: ["[", "](#url#)"],
-	image: ["![](", "#url#)"],
-	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
-	horizontalRule: ["", "\n\n-----\n\n"]
+	// image: ["![](", "#url#)"],
+	// table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
+	// horizontalRule: ["", "\n\n-----\n\n"]
 };
 
 var promptTexts = {
 	link: "URL for the link:",
-	image: "URL of the image:"
+	// image: "URL of the image:"
 };
 
 var blockStyles = {
-	"bold": "**",
+	"bold": "*",
 	"code": "```",
-	"italic": "*"
+	"italic": "_"
 };
 
 /**
- * Interface of SimpleMDE.
+ * Interface of TgMDE.
  */
-function SimpleMDE(options) {
+function TgMDE(options) {
 	// Handle options parameter
 	options = options || {};
 
@@ -1302,7 +1299,7 @@ function SimpleMDE(options) {
 		this.element = options.element;
 	} else if(options.element === null) {
 		// This means that the element option was specified, but no element was found
-		console.log("SimpleMDE: Error. No element was found.");
+		console.log("TgMDE: Error. No element was found.");
 		return;
 	}
 
@@ -1384,12 +1381,12 @@ function SimpleMDE(options) {
 	if(options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
 		this.value(options.initialValue);
 	}
-}
+};
 
 /**
  * Default markdown render.
  */
-SimpleMDE.prototype.markdown = function(text) {
+TgMDE.prototype.markdown = function(text) {
 	if(marked) {
 		// Initialize
 		var markedOptions = {};
@@ -1421,7 +1418,7 @@ SimpleMDE.prototype.markdown = function(text) {
 /**
  * Render editor to the given element.
  */
-SimpleMDE.prototype.render = function(el) {
+TgMDE.prototype.render = function(el) {
 	if(!el) {
 		el = this.element || document.getElementsByTagName("textarea")[0];
 	}
@@ -1530,8 +1527,8 @@ SimpleMDE.prototype.render = function(el) {
 function isLocalStorageAvailable() {
 	if(typeof localStorage === "object") {
 		try {
-			localStorage.setItem("smde_localStorage", 1);
-			localStorage.removeItem("smde_localStorage");
+			localStorage.setItem("tgmde_localStorage", 1);
+			localStorage.removeItem("tgmde_localStorage");
 		} catch(e) {
 			return false;
 		}
@@ -1540,33 +1537,33 @@ function isLocalStorageAvailable() {
 	}
 
 	return true;
-}
+};
 
-SimpleMDE.prototype.autosave = function() {
+TgMDE.prototype.autosave = function() {
 	if(isLocalStorageAvailable()) {
 		var simplemde = this;
 
 		if(this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
-			console.log("SimpleMDE: You must set a uniqueId to use the autosave feature");
+			console.log("TgMDE: You must set a uniqueId to use the autosave feature");
 			return;
 		}
 
 		if(simplemde.element.form != null && simplemde.element.form != undefined) {
 			simplemde.element.form.addEventListener("submit", function() {
-				localStorage.removeItem("smde_" + simplemde.options.autosave.uniqueId);
+				localStorage.removeItem("tgmde_" + simplemde.options.autosave.uniqueId);
 			});
 		}
 
 		if(this.options.autosave.loaded !== true) {
-			if(typeof localStorage.getItem("smde_" + this.options.autosave.uniqueId) == "string" && localStorage.getItem("smde_" + this.options.autosave.uniqueId) != "") {
-				this.codemirror.setValue(localStorage.getItem("smde_" + this.options.autosave.uniqueId));
+			if(typeof localStorage.getItem("tgmde_" + this.options.autosave.uniqueId) == "string" && localStorage.getItem("tgmde_" + this.options.autosave.uniqueId) != "") {
+				this.codemirror.setValue(localStorage.getItem("tgmde_" + this.options.autosave.uniqueId));
 				this.options.autosave.foundSavedValue = true;
 			}
 
 			this.options.autosave.loaded = true;
 		}
 
-		localStorage.setItem("smde_" + this.options.autosave.uniqueId, simplemde.value());
+		localStorage.setItem("tgmde_" + this.options.autosave.uniqueId, simplemde.value());
 
 		var el = document.getElementById("autosaved");
 		if(el != null && el != undefined && el != "") {
@@ -1591,24 +1588,24 @@ SimpleMDE.prototype.autosave = function() {
 			simplemde.autosave();
 		}, this.options.autosave.delay || 10000);
 	} else {
-		console.log("SimpleMDE: localStorage not available, cannot autosave");
+		console.log("TgMDE: localStorage not available, cannot autosave");
 	}
 };
 
-SimpleMDE.prototype.clearAutosavedValue = function() {
+TgMDE.prototype.clearAutosavedValue = function() {
 	if(isLocalStorageAvailable()) {
 		if(this.options.autosave == undefined || this.options.autosave.uniqueId == undefined || this.options.autosave.uniqueId == "") {
-			console.log("SimpleMDE: You must set a uniqueId to clear the autosave value");
+			console.log("TgMDE: You must set a uniqueId to clear the autosave value");
 			return;
 		}
 
-		localStorage.removeItem("smde_" + this.options.autosave.uniqueId);
+		localStorage.removeItem("tgmde_" + this.options.autosave.uniqueId);
 	} else {
-		console.log("SimpleMDE: localStorage not available, cannot autosave");
+		console.log("TgMDE: localStorage not available, cannot autosave");
 	}
 };
 
-SimpleMDE.prototype.createSideBySide = function() {
+TgMDE.prototype.createSideBySide = function() {
 	var cm = this.codemirror;
 	var wrapper = cm.getWrapperElement();
 	var preview = wrapper.nextSibling;
@@ -1649,7 +1646,7 @@ SimpleMDE.prototype.createSideBySide = function() {
 	return preview;
 };
 
-SimpleMDE.prototype.createToolbar = function(items) {
+TgMDE.prototype.createToolbar = function(items) {
 	items = items || this.options.toolbar;
 
 	if(!items || items.length === 0) {
@@ -1748,7 +1745,7 @@ SimpleMDE.prototype.createToolbar = function(items) {
 	return bar;
 };
 
-SimpleMDE.prototype.createStatusbar = function(status) {
+TgMDE.prototype.createStatusbar = function(status) {
 	// Initialize
 	status = status || this.options.status;
 	var options = this.options;
@@ -1866,7 +1863,7 @@ SimpleMDE.prototype.createStatusbar = function(status) {
 /**
  * Get or set the text content.
  */
-SimpleMDE.prototype.value = function(val) {
+TgMDE.prototype.value = function(val) {
 	if(val === undefined) {
 		return this.codemirror.getValue();
 	} else {
@@ -1879,100 +1876,100 @@ SimpleMDE.prototype.value = function(val) {
 /**
  * Bind static methods for exports.
  */
-SimpleMDE.toggleBold = toggleBold;
-SimpleMDE.toggleItalic = toggleItalic;
-SimpleMDE.toggleStrikethrough = toggleStrikethrough;
-SimpleMDE.toggleBlockquote = toggleBlockquote;
-SimpleMDE.toggleHeadingSmaller = toggleHeadingSmaller;
-SimpleMDE.toggleHeadingBigger = toggleHeadingBigger;
-SimpleMDE.toggleHeading1 = toggleHeading1;
-SimpleMDE.toggleHeading2 = toggleHeading2;
-SimpleMDE.toggleHeading3 = toggleHeading3;
-SimpleMDE.toggleCodeBlock = toggleCodeBlock;
-SimpleMDE.toggleUnorderedList = toggleUnorderedList;
-SimpleMDE.toggleOrderedList = toggleOrderedList;
-SimpleMDE.cleanBlock = cleanBlock;
-SimpleMDE.drawLink = drawLink;
-SimpleMDE.drawImage = drawImage;
-SimpleMDE.drawTable = drawTable;
-SimpleMDE.drawHorizontalRule = drawHorizontalRule;
-SimpleMDE.undo = undo;
-SimpleMDE.redo = redo;
-SimpleMDE.togglePreview = togglePreview;
-SimpleMDE.toggleSideBySide = toggleSideBySide;
-SimpleMDE.toggleFullScreen = toggleFullScreen;
+TgMDE.toggleBold = toggleBold;
+TgMDE.toggleItalic = toggleItalic;
+// TgMDE.toggleStrikethrough = toggleStrikethrough;
+TgMDE.toggleBlockquote = toggleBlockquote;
+// TgMDE.toggleHeadingSmaller = toggleHeadingSmaller;
+// TgMDE.toggleHeadingBigger = toggleHeadingBigger;
+// TgMDE.toggleHeading1 = toggleHeading1;
+// TgMDE.toggleHeading2 = toggleHeading2;
+// TgMDE.toggleHeading3 = toggleHeading3;
+TgMDE.toggleCodeBlock = toggleCodeBlock;
+// TgMDE.toggleUnorderedList = toggleUnorderedList;
+// TgMDE.toggleOrderedList = toggleOrderedList;
+TgMDE.cleanBlock = cleanBlock;
+TgMDE.drawLink = drawLink;
+// TgMDE.drawImage = drawImage;
+// TgMDE.drawTable = drawTable;
+// TgMDE.drawHorizontalRule = drawHorizontalRule;
+TgMDE.undo = undo;
+TgMDE.redo = redo;
+TgMDE.togglePreview = togglePreview;
+TgMDE.toggleSideBySide = toggleSideBySide;
+TgMDE.toggleFullScreen = toggleFullScreen;
 
 /**
  * Bind instance methods for exports.
  */
-SimpleMDE.prototype.toggleBold = function() {
+TgMDE.prototype.toggleBold = function() {
 	toggleBold(this);
 };
-SimpleMDE.prototype.toggleItalic = function() {
+TgMDE.prototype.toggleItalic = function() {
 	toggleItalic(this);
 };
-SimpleMDE.prototype.toggleStrikethrough = function() {
-	toggleStrikethrough(this);
-};
-SimpleMDE.prototype.toggleBlockquote = function() {
+// TgMDE.prototype.toggleStrikethrough = function () {
+// 	toggleStrikethrough(this);
+// };
+TgMDE.prototype.toggleBlockquote = function() {
 	toggleBlockquote(this);
 };
-SimpleMDE.prototype.toggleHeadingSmaller = function() {
-	toggleHeadingSmaller(this);
-};
-SimpleMDE.prototype.toggleHeadingBigger = function() {
-	toggleHeadingBigger(this);
-};
-SimpleMDE.prototype.toggleHeading1 = function() {
-	toggleHeading1(this);
-};
-SimpleMDE.prototype.toggleHeading2 = function() {
-	toggleHeading2(this);
-};
-SimpleMDE.prototype.toggleHeading3 = function() {
-	toggleHeading3(this);
-};
-SimpleMDE.prototype.toggleCodeBlock = function() {
+// TgMDE.prototype.toggleHeadingSmaller = function () {
+// 	toggleHeadingSmaller(this);
+// };
+// TgMDE.prototype.toggleHeadingBigger = function () {
+// 	toggleHeadingBigger(this);
+// };
+// TgMDE.prototype.toggleHeading1 = function () {
+// 	toggleHeading1(this);
+// };
+// TgMDE.prototype.toggleHeading2 = function () {
+// 	toggleHeading2(this);
+// };
+// TgMDE.prototype.toggleHeading3 = function () {
+// 	toggleHeading3(this);
+// };
+TgMDE.prototype.toggleCodeBlock = function() {
 	toggleCodeBlock(this);
 };
-SimpleMDE.prototype.toggleUnorderedList = function() {
-	toggleUnorderedList(this);
-};
-SimpleMDE.prototype.toggleOrderedList = function() {
-	toggleOrderedList(this);
-};
-SimpleMDE.prototype.cleanBlock = function() {
+// TgMDE.prototype.toggleUnorderedList = function () {
+// 	toggleUnorderedList(this);
+// };
+// TgMDE.prototype.toggleOrderedList = function () {
+// 	toggleOrderedList(this);
+// };
+TgMDE.prototype.cleanBlock = function() {
 	cleanBlock(this);
 };
-SimpleMDE.prototype.drawLink = function() {
+TgMDE.prototype.drawLink = function() {
 	drawLink(this);
 };
-SimpleMDE.prototype.drawImage = function() {
-	drawImage(this);
-};
-SimpleMDE.prototype.drawTable = function() {
-	drawTable(this);
-};
-SimpleMDE.prototype.drawHorizontalRule = function() {
-	drawHorizontalRule(this);
-};
-SimpleMDE.prototype.undo = function() {
+// TgMDE.prototype.drawImage = function () {
+// 	drawImage(this);
+// };
+// TgMDE.prototype.drawTable = function () {
+// 	drawTable(this);
+// };
+// TgMDE.prototype.drawHorizontalRule = function () {
+// 	drawHorizontalRule(this);
+// };
+TgMDE.prototype.undo = function() {
 	undo(this);
 };
-SimpleMDE.prototype.redo = function() {
+TgMDE.prototype.redo = function() {
 	redo(this);
 };
-SimpleMDE.prototype.togglePreview = function() {
+TgMDE.prototype.togglePreview = function() {
 	togglePreview(this);
 };
-SimpleMDE.prototype.toggleSideBySide = function() {
+TgMDE.prototype.toggleSideBySide = function() {
 	toggleSideBySide(this);
 };
-SimpleMDE.prototype.toggleFullScreen = function() {
+TgMDE.prototype.toggleFullScreen = function() {
 	toggleFullScreen(this);
 };
 
-SimpleMDE.prototype.isPreviewActive = function() {
+TgMDE.prototype.isPreviewActive = function() {
 	var cm = this.codemirror;
 	var wrapper = cm.getWrapperElement();
 	var preview = wrapper.lastChild;
@@ -1980,7 +1977,7 @@ SimpleMDE.prototype.isPreviewActive = function() {
 	return /editor-preview-active/.test(preview.className);
 };
 
-SimpleMDE.prototype.isSideBySideActive = function() {
+TgMDE.prototype.isSideBySideActive = function() {
 	var cm = this.codemirror;
 	var wrapper = cm.getWrapperElement();
 	var preview = wrapper.nextSibling;
@@ -1988,19 +1985,19 @@ SimpleMDE.prototype.isSideBySideActive = function() {
 	return /editor-preview-active-side/.test(preview.className);
 };
 
-SimpleMDE.prototype.isFullscreenActive = function() {
+TgMDE.prototype.isFullscreenActive = function() {
 	var cm = this.codemirror;
 
 	return cm.getOption("fullScreen");
 };
 
-SimpleMDE.prototype.getState = function() {
+TgMDE.prototype.getState = function() {
 	var cm = this.codemirror;
 
 	return getState(cm);
 };
 
-SimpleMDE.prototype.toTextArea = function() {
+TgMDE.prototype.toTextArea = function() {
 	var cm = this.codemirror;
 	var wrapper = cm.getWrapperElement();
 
@@ -2025,4 +2022,4 @@ SimpleMDE.prototype.toTextArea = function() {
 	}
 };
 
-module.exports = SimpleMDE;
+module.exports = TgMDE;

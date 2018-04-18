@@ -1,14 +1,19 @@
 {
-	"name": "simplemde",
+	"name": "tgmde",
 	"version": "1.11.2",
-	"homepage": "https://github.com/NextStepWebs/simplemde-markdown-editor",
+	"homepage": "https://github.com/xen/tgmde",
 	"authors": [
+		"Mikhail Kashkin <https://t.me/mkashkin>",
 		"Wes Cossick <https://wescossick.com>"
 	],
-	"description": "A simple, beautiful, and embeddable JavaScript Markdown editor.",
-	"main": ["src/js/simplemde.js", "src/css/simplemde.css"],
+	"description": "A simple, beautiful, and embeddable JavaScript Telegram Markdown editor.",
+	"main": [
+		"src/js/tgmde.js",
+		"src/css/tgmde.css"
+	],
 	"keywords": [
 		"embeddable",
+		"telegram",
 		"markdown",
 		"editor",
 		"javascript",

@@ -22,19 +22,19 @@ var banner = ["/**",
 	" */",
 	""].join("\n");
 
-gulp.task("prettify-js", [], function() {
-	return gulp.src("./src/js/simplemde.js")
-		.pipe(prettify({js: {brace_style: "collapse", indent_char: "\t", indent_size: 1, max_preserve_newlines: 3, space_before_conditional: false}}))
+gulp.task("prettify-js", [], function () {
+	return gulp.src("./src/js/tgmde.js")
+		.pipe(prettify({ js: { brace_style: "collapse", indent_char: "\t", indent_size: 1, max_preserve_newlines: 3, space_before_conditional: false } }))
 		.pipe(gulp.dest("./src/js"));
 });
- 
-gulp.task("prettify-css", [], function() {
-	return gulp.src("./src/css/simplemde.css")
-		.pipe(prettify({css: {indentChar: "\t", indentSize: 1}}))
+
+gulp.task("prettify-css", [], function () {
+	return gulp.src("./src/css/tgmde.css")
+		.pipe(prettify({ css: { indentChar: "\t", indentSize: 1 } }))
 		.pipe(gulp.dest("./src/css"));
 });
 
-gulp.task("lint", ["prettify-js"], function() {
+gulp.task("lint", ["prettify-js"], function () {
 	gulp.src("./src/js/**/*.js")
 		.pipe(debug())
 		.pipe(eslint())
@@ -43,53 +43,53 @@ gulp.task("lint", ["prettify-js"], function() {
 });
 
 function taskBrowserify(opts) {
-	return browserify("./src/js/simplemde.js", opts)
+	return browserify("./src/js/tgmde.js", opts)
 		.bundle();
 }
 
-gulp.task("browserify:debug", ["lint"], function() {
-	return taskBrowserify({debug:true, standalone:"SimpleMDE"})
-		.pipe(source("simplemde.debug.js"))
+gulp.task("browserify:debug", ["lint"], function () {
+	return taskBrowserify({ debug: true, standalone: "TgMDE" })
+		.pipe(source("tgmde.debug.js"))
 		.pipe(buffer())
-		.pipe(header(banner, {pkg: pkg}))
+		.pipe(header(banner, { pkg: pkg }))
 		.pipe(gulp.dest("./debug/"));
 });
 
-gulp.task("browserify", ["lint"], function() {
-	return taskBrowserify({standalone:"SimpleMDE"})
-		.pipe(source("simplemde.js"))
+gulp.task("browserify", ["lint"], function () {
+	return taskBrowserify({ standalone: "TgMDE" })
+		.pipe(source("tgmde.js"))
 		.pipe(buffer())
-		.pipe(header(banner, {pkg: pkg}))
+		.pipe(header(banner, { pkg: pkg }))
 		.pipe(gulp.dest("./debug/"));
 });
 
-gulp.task("scripts", ["browserify:debug", "browserify", "lint"], function() {
-	var js_files = ["./debug/simplemde.js"];
-	
+gulp.task("scripts", ["browserify:debug", "browserify", "lint"], function () {
+	var js_files = ["./debug/tgmde.js"];
+
 	return gulp.src(js_files)
-		.pipe(concat("simplemde.min.js"))
+		.pipe(concat("tgmde.min.js"))
 		.pipe(uglify())
 		.pipe(buffer())
-		.pipe(header(banner, {pkg: pkg}))
+		.pipe(header(banner, { pkg: pkg }))
 		.pipe(gulp.dest("./dist/"));
 });
 
-gulp.task("styles", ["prettify-css"], function() {
+gulp.task("styles", ["prettify-css"], function () {
 	var css_files = [
 		"./node_modules/codemirror/lib/codemirror.css",
 		"./src/css/*.css",
 		"./node_modules/codemirror-spell-checker/src/css/spell-checker.css"
 	];
-	
+
 	return gulp.src(css_files)
-		.pipe(concat("simplemde.css"))
+		.pipe(concat("tgmde.css"))
 		.pipe(buffer())
-		.pipe(header(banner, {pkg: pkg}))
+		.pipe(header(banner, { pkg: pkg }))
 		.pipe(gulp.dest("./debug/"))
 		.pipe(minifycss())
-		.pipe(rename("simplemde.min.css"))
+		.pipe(rename("tgmde.min.css"))
 		.pipe(buffer())
-		.pipe(header(banner, {pkg: pkg}))
+		.pipe(header(banner, { pkg: pkg }))
 		.pipe(gulp.dest("./dist/"));
 });
 
