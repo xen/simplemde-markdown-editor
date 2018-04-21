@@ -1,6 +1,6 @@
 {
   "name": "tgmde",
-  "version": "1.11.2",
+  "version": "1.0.0",
   "description": "A simple, beautiful, and embeddable JavaScript Telegram Markdown editor. Features autosaving and spell checking.",
   "keywords": [
     "telegram",
@@ -8,7 +8,8 @@
     "markdown",
     "editor",
     "javascript",
-    "wysiwyg"
+    "wysiwyg",
+    "codemirror"
   ],
   "homepage": "https://github.com/xen/tgmde",
   "main": "./src/js/simplemde.js",
