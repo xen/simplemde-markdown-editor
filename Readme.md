@@ -14,3 +14,48 @@ All rules that is supported:
     ```
 
 Project is based on the beautiful [SimpleMDE Markdown Editor](https://simplemde.com/).
+
+## React component from TgMDE
+
+**TgMdEditor.jsx**
+
+```jsx
+import React, { useEffect } from 'react'
+import * as TGMDE from 'tgmde/dist/tgmde.min.js'
+import 'tgmde/dist/tgmde.min.css'
+
+
+const TgMdEditor = ({ value, setValue }) => {
+
+  useEffect(() => {
+    const tgmde = new TGMDE({});
+    tgmde.value(value);
+    tgmde.codemirror.on('change', () => setValue(tgmde.value()))
+  }, [])
+  
+  
+  return (
+    <div className="tgmde">
+      <textarea />
+    </div>
+  )
+}
+
+export default TgMdEditor
+
+```
+
+your **Form.jsx**
+
+```jsx
+// ...
+
+import TgMdEditor from './path/to/TgMdEditor';
+
+// ...
+
+   <TgMdEditor value={ state.text }  setValue={ setText } />
+
+// ...
+
+```
